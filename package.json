@@ -13,6 +13,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "styled-components": "^5.0.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -37,6 +38,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "npm:dart-sass@1.25.0"
+    "node-sass": "npm:dart-sass@1.25.0",
+    "@types/styled-components": "^5.0.1"
   }
 }
