@@ -5,8 +5,9 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import styled from 'styled-components';
-import Layout from 'components/Layout';
+import Tags from 'views/Tags';
+import Money from 'views/Money';
+import Statistics from 'views/Statistics';
 
 
 
@@ -37,26 +38,7 @@ export default App;
 function NotFound() {
   return <h2>404</h2>;
 }
-function Statistics() {
-  return (
-    <Layout >
-      <h2>统计</h2>
-    </Layout>
-  );
-}
 
-function Tags() {
-  return (
-    <Layout>
-      <h2>标签</h2>
-    </Layout>
-  );
-}
 
-function Money() {
-  return (
-    <Layout>
-      <h2>账单</h2>
-    </Layout>
-  );
-}
+
+
