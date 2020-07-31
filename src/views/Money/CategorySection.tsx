@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react'
+import React from 'react'
 
 
 const Category = styled.section`
@@ -25,20 +25,23 @@ const Category = styled.section`
     }
   }
 `;
+type Props = {
+  value: '-' | '+';
+  onChange: (value: '-' | '+') => void;
+}
 
-
-const CategorySection: React.FC = () => {
-  const CategoryMap = {'-': '支出', '+': '收入'}
-  const [category, setCategory] = useState("-");
-  type Keys = keyof typeof CategoryMap;
+const CategorySection: React.FC<Props> = (props) => {
+  // const CategoryMap = {'-': '支出', '+': '收入'}
+  // type Keys = keyof typeof CategoryMap;
+  const category = props.value;
   return (
     <Category>
       <ul>
         <li className={category === "-" ? "selected" : ""}
-          onClick={() => setCategory("-")}
+          onClick={() => props.onChange("-")}
         >支出</li>
         <li className={category !== "-" ? "selected" : ""}
-          onClick={() => setCategory("+")}
+          onClick={() => props.onChange("+")}
         >收入</li>
       </ul>
     </Category>

@@ -1,7 +1,6 @@
 
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react'
-import { clear } from 'console';
+import React, { useEffect } from 'react'
 
 const NumberPad = styled.section`
     display:flex;
@@ -63,18 +62,31 @@ const rgba: string[] = ['rgba(254, 67, 101)',
     'rgba(200,200,169)',
     'rgba(199,237,233)',
     'rgba(147,224,255)',
-    'rgba(131,175,155)']
+    'rgba(131,175,155)'];
 
-const NumberPadSection: React.FC = () => {
-    const [outPut, _setOutPut] = useState("0");
+type Props = {
+    value: number;
+    onChange: (value: number) => void;
+    onOK?: () => void;
+}
+
+const NumberPadSection: React.FC<Props> = (props) => {
+    const outPut = props.value.toString();
     const setOutPut = (outPut: string) => {
-        if (outPut.length > 16) return;
-        _setOutPut(outPut)
+        let value;
+        if (outPut.length > 16) {
+            value = parseFloat(outPut.slice(0, 16));
+        } else if (outPut.length === 0) {
+            value = 0;
+        } else {
+            value = parseFloat(outPut)
+        }
+        props.onChange(value)
     }
 
     useEffect(() => {
         let originColor = "";
-        let timer:any;
+        let timer: any;
         document.querySelector(".pad")?.addEventListener('click', (e) => {
             originColor = getComputedStyle((e.target as Element)).backgroundColor;
             const target = (e.target as HTMLButtonElement)
@@ -99,7 +111,7 @@ const NumberPadSection: React.FC = () => {
                 else setOutPut(outPut.slice(0, -1));
                 break;
             case 'OK':
-                console.log(text)
+                props.onOK && props.onOK();
                 break;
             case '清空':
                 setOutPut("0");
