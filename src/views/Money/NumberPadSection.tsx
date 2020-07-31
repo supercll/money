@@ -20,7 +20,6 @@ const NumberPadSection = styled.section`
         width: 25%; 
         height: 64px; 
         border: 1px solid white;
-
         &.ok{ height: 128px; float: right; }
         &.zero{ width: 50%; }
 
