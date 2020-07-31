@@ -10,7 +10,6 @@ const MyLayout = styled(Layout)`
     display:flex;
     flex-direction: column;
 `
-
 type Category = '-' | '+';
 
 function Money() {
@@ -19,46 +18,35 @@ function Money() {
         note: '',
         category: '-' as Category,
         amount: 0
-    })
+    });
+
+    // Partial 部分类型
+    const onChange = (obj: Partial<typeof selected>) => {
+        setSelected({
+            ...selected,
+            ...obj
+        })
+    }
     return (
         <MyLayout>
-            <TagsSection value={selected.tags}
-                onChange={
-                    (tags) => setSelected({
-                        ...selected,
-                        tags: tags
-                    })}
+            <TagsSection
+                value={selected.tags}
+                onChange={(tags) => onChange({ tags })}
             />
-
             <NoteSection
                 value={selected.note}
-                onChange={
-                    (note) => setSelected({
-                        ...selected,
-                        note: note
-                    })}
+                onChange={(note) => onChange({ note })}
             />
-
             <CategorySection
                 value={selected.category}
-                onChange={
-                    (category) => setSelected({
-                        ...selected,
-                        category: category
-                    })}
+                onChange={(category) => onChange({ category })}
             />
-
             <NumberPadSection
                 value={selected.amount}
-                onChange={
-                    (amount) => setSelected({
-                        ...selected,
-                        amount: amount
-                    })}
-                onOK={() => {}}
+                onChange={(amount) => onChange({ amount })}
+                onOK={() => { }}
             />
         </MyLayout>
     );
 }
-
 export default Money;
