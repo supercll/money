@@ -34,16 +34,11 @@ const InputWrapper = styled.div`
 
 const Tag: React.FC = () => {
 
-    const { findId, updateTag } = useTags();
+    const { findId, updateTag, deleteTag } = useTags();
     let { id: paramsId } = useParams<Params>();
     const tag = findId(parseInt(paramsId));
-    return (
-        <Layout>
-            <Topbar>
-                <Icon fill="#fb7299" name="leftArro" />
-                <span>编辑标签</span>
-                <span></span>
-            </Topbar>
+    const tagContent = (tag: { id: number, name: string }) => {
+        return <div>
             <InputWrapper>
                 <Input
                     label="修改标签名："
@@ -56,8 +51,23 @@ const Tag: React.FC = () => {
             </InputWrapper>
             <Center>
                 <Space />
-                <Button>删除标签</Button>
+                <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
             </Center>
+        </div>
+    }
+
+    return (
+        <Layout>
+            <Topbar>
+                <Icon fill="#fb7299" name="leftArro" />
+                <span>编辑标签</span>
+                <span></span>
+            </Topbar>
+            {!!tag ? tagContent(tag) : <Center>
+                <Button>标签不存在</Button>
+            </Center>
+            }
+
         </Layout>
     )
 }
