@@ -34,9 +34,9 @@ const InputWrapper = styled.div`
 
 const Tag: React.FC = () => {
 
-    const { findId } = useTags();
-    let { id } = useParams<Params>();
-    const tag = findId(parseInt(id));
+    const { findId, updateTag } = useTags();
+    let { id: paramsId } = useParams<Params>();
+    const tag = findId(parseInt(paramsId));
     return (
         <Layout>
             <Topbar>
@@ -49,6 +49,9 @@ const Tag: React.FC = () => {
                     label="修改标签名："
                     placeholder="标签名"
                     value={tag.name}
+                    onChange={(e) => {
+                        updateTag(tag.id, { name: e.target.value })
+                    }}
                 >修改标签名：</Input>
             </InputWrapper>
             <Center>
