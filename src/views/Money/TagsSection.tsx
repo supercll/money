@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, { useState } from 'react'
+import React from 'react'
+import { useTags } from 'useTags';
 
 const Tag = styled.section`
     background: #FFFFFF; 
@@ -38,7 +39,7 @@ type Props = {
 
 const TagsSection: React.FC<Props> = (props) => {
     const selectedTags = props.value;
-    const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行', '教育', '游戏']);
+    const { tags, setTags } = useTags();
     const onAddTag = () => {
         const tagName = window.prompt("新标签的名字为：")
         if (tagName != null && tagName?.trim() !== "") {
