@@ -25,7 +25,7 @@ const NavWrapper = styled.nav`
         }
 
         .selected {
-            color: orange;
+            color: #fb7299;
             background: rgba(0,0,0,0.1)
         }
     }

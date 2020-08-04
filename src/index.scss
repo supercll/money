@@ -46,11 +46,18 @@ button {
 .icon {
     width: 1em;
     height: 1em;
-    display: inline-block;
+    vertical-align: -0.15em;
+    overflow: hidden;
 }
 
 .clearfix::after {
     content: '';
     display: block;
     clear: both;
+}
+
+.oneLine {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
