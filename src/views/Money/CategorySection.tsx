@@ -16,7 +16,7 @@ const Category = styled.section`
         content: '';
         display:block; 
         height: 3px;
-        background:#333;
+        background:#fb7299;
         position:absolute;
         bottom:0;
         width: 100%;
