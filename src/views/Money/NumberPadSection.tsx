@@ -12,23 +12,21 @@ const rgba: string[] = ['rgba(254, 67, 101)',
     'rgba(131,175,155)'];
 
 type Props = {
-    value: number;
-    onChange: (value: number) => void;
+    value: string;
+    onChange: (value: string) => void;
     onOK?: () => void;
 }
 
 const NumberPadSection: React.FC<Props> = (props) => {
-    const outPut = props.value.toString();
+    const outPut = props.value;
     const setOutPut = (outPut: string) => {
-        let value;
-        if (outPut.length > 16) {
-            value = parseFloat(outPut.slice(0, 16));
-        } else if (outPut.length === 0) {
-            value = 0;
+        let value = '0';
+        if (outPut.length === 0) {
+            value = '0';
         } else {
-            value = parseFloat(outPut)
+            value = outPut
         }
-        props.onChange(value)
+        props.onChange(value);
     }
 
     useEffect(() => {

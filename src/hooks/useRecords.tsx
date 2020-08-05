@@ -5,7 +5,7 @@ type RecordItem = {
     tagIds: number[];
     note: string;
     category: "+" | "-";
-    amount: number;
+    amount: string;
     createdAt: string
 }
 
@@ -19,7 +19,7 @@ export const useRecords = () => {
     }, [])
 
     const addRecord = (newRecord: newRecordItem) => {
-        if (newRecord.amount <= 0) return "请输入大于0的金额";
+        if (parseFloat(newRecord.amount) <= 0) return "请输入大于0的金额";
         if (newRecord.tagIds.length < 1) return "请先选则标签";
         const record = { ...newRecord, createdAt: (new Date()).toISOString() }
         setRecords([...records, record])
