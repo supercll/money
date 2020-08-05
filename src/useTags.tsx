@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import createId from 'lib/createId';
 
 const defaultTags = [
@@ -24,22 +24,23 @@ const useTags = () => {
         return res;
     }
     const updateTag = (id: number, obj: { name: string }) => {
-        // 获取要改变的tag的下标
+        setTags(tags.map(tag => {
+            if (tag.id === id) {
+                return { id, name: obj.name };
+            } else {
+                return tag;
+            }
+        }))
+        /* // 获取要改变的tag的下标
         const index = findTagIndex(id);
         // 深拷贝tags
         const tagsClone = JSON.parse(JSON.stringify(tags))
         // 把克隆后的数据修改
         tagsClone.splice(index, 1, { id: id, name: obj.name })
-        setTags(tagsClone);
+        setTags(tagsClone); */
     }
     const deleteTag = (id: number) => {
-        // 获取要改变的tag的下标
-        const index = findTagIndex(id);
-        // 深拷贝tags
-        const tagsClone = JSON.parse(JSON.stringify(tags))
-        // 把克隆后的数据修改
-        tagsClone.splice(index)
-        setTags(tagsClone);
+        setTags(tags.filter(tag => tag.id !== id))
     }
     return {
         tags,

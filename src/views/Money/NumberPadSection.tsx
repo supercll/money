@@ -32,7 +32,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
     }
 
     useEffect(() => {
-        var timer = null;
+        var timer:any = null;
         document.querySelector(".pad")?.addEventListener('mousedown', (e) => {
             let originColor = getComputedStyle((e.target as Element)).backgroundColor;
             const target = (e.target as HTMLButtonElement)
@@ -42,6 +42,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
 
             document.querySelector(".pad")?.addEventListener('mouseup', () => {
                 timer = setTimeout(() => {
+                    clearTimeout(timer);
                     timer = null;
                     target.style.background = originColor;
                 }, 100)
