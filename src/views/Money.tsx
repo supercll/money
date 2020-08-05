@@ -1,15 +1,25 @@
-import Layout from "components/Layout";
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { TagsSection } from './Money/TagsSection';
 import { CategorySection } from '../components/CategorySection';
 import { NoteSection } from './Money/NoteSection';
 import { NumberPadSection } from './Money/NumberPadSection';
 import styled from "styled-components";
 import { useRecords } from "hooks/useRecords";
+import Icon from 'components/Icon';
 
-const MyLayout = styled(Layout)`
+const Wrapper = styled.div`
+    background:#ffffff;
+    position: absolute;
+    /* display: none; */
     display:flex;
     flex-direction: column;
+    bottom: 0;
+    transition: 0.6s ease;
+    #closeRecord {
+        .icon {
+            font-size: 36px;
+        }
+    }
 `
 type Category = '-' | '+';
 
@@ -22,6 +32,13 @@ const defaultFormData = {
 
 function Money() {
     const [selected, setSelected] = useState(defaultFormData);
+
+    const recordRef = React.createRef();
+
+    const closeRecord = () => {
+
+
+    }
 
     // Partial 部分类型
     const onChange = (obj: Partial<typeof selected>) => {
@@ -43,7 +60,8 @@ function Money() {
         }
     }
     return (
-        <MyLayout>
+        <Wrapper id="recordBoard">
+            <section id="closeRecord" ><Icon fill="#6dc781" name="down" /></section>
             <TagsSection
                 value={selected.tagIds}
                 onChange={(tagIds) => onChange({ tagIds })}
@@ -61,7 +79,7 @@ function Money() {
                 onChange={(amount) => onChange({ amount })}
                 onOK={submit}
             />
-        </MyLayout>
+        </Wrapper>
     );
 }
 export default Money;

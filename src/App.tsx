@@ -13,9 +13,10 @@ import Home from 'views/Home';
 
 
 const Wrapper = styled.div`
-  color: #333;
-  max-width: 375px;
-  margin: 0 auto;
+position: relative;
+color: #333;
+max-width: 480px;
+margin: 0 auto;
 `;
 
 function App() {

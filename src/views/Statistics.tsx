@@ -14,6 +14,7 @@ const History = styled.div`
     border-bottom: solid 1px #fb7299;
     background: #fafafa;
     padding: 10px 0;
+    overflow: scroll;
 
     .tag {
         width: 25%;

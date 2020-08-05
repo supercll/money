@@ -3,8 +3,9 @@ import React from 'react'
 
 
 const Category = styled.section`
-width: 30%;
 font-size: 14px;
+background: #ffffff;
+margin: 10px 0;
 > ul{
   display:flex;
   .spending {
@@ -14,11 +15,11 @@ font-size: 14px;
     background: #73c9e5;
   }
   > li {
-    padding: 2px 5px;
+    margin: 0 4px;
+    padding: 4px 8px;
     background: #f1f1f1;
-    border-radius: 50%;
+    border-radius: 40px;
     text-align:center;
-    position:relative;
   }
 }
 `;
