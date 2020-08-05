@@ -34,9 +34,13 @@ function Money() {
     const { addRecord } = useRecords();
 
     const submit = () => {
-        addRecord(selected);
-        alert("记账成功");
-        setSelected(defaultFormData);
+        const res = addRecord(selected);
+        if (res === true) {
+            alert("记账成功");
+            setSelected(defaultFormData);
+        } else {
+            alert(res)
+        }
     }
     return (
         <MyLayout>

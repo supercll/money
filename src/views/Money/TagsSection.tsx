@@ -39,7 +39,7 @@ type Props = {
 
 const TagsSection: React.FC<Props> = (props) => {
     const selectedTagIds = props.value;
-    const { tags } = useTags();
+    const { tags, AddTag } = useTags();
 
 
     const onToggleTag = (tagId: number) => {
@@ -64,7 +64,7 @@ const TagsSection: React.FC<Props> = (props) => {
                     })
                 }
             </ol>
-            <button>新增标签</button>
+            <button onClick={AddTag}>新增标签</button>
         </Tag>
     )
 }

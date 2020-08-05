@@ -19,8 +19,11 @@ export const useRecords = () => {
     }, [])
 
     const addRecord = (newRecord: newRecordItem) => {
+        if (newRecord.amount <= 0) return "请输入大于0的金额";
+        if (newRecord.tagIds.length < 1) return "请先选则标签";
         const record = { ...newRecord, createdAt: (new Date()).toISOString() }
         setRecords([...records, record])
+        return true;
     };
 
     useUpdate(() => {

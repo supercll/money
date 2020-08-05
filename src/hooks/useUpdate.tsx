@@ -6,7 +6,6 @@ const useUpdate = (fn: () => void, deps: any[]) => {
         count.current += 1;
     })
     useEffect(() => {
-        console.log(count.current)
         if (count.current > 1) {
             fn();
         }
