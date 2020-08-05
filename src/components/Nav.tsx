@@ -4,46 +4,55 @@ import { NavLink } from "react-router-dom";
 import Icon from './Icon';
 
 const NavWrapper = styled.nav`
-    line-height: 24px;
-    box-shadow: 0 0 3px rgba(0,0,0,0.25);
-    position: relative;
-    a{
-        padding: 16px;
-        padding: 4px 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    > ul {
+line-height: 24px;
+box-shadow: 0 0 3px rgba(0,0,0,0.25);
+position: relative;
+a{
+    padding: 16px;
+    padding: 4px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+> ul {
     display: flex;
     > li {
-            text-align: center;
-            width: 33.333%;
-            .icon {
-                width: 24px;
-                height: 24px;
-            }
+        text-align: center;
+        width: 33.333%;
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
 
-            .selected {
-                color: #fb7299;
-                background: rgba(0,0,0,0.1)
-            }
+        .selected {
+            color: #fb7299;
+            background: rgba(0,0,0,0.1)
         }
     }
-    .record {
-        position: absolute;
-        bottom: 100px;
-        right: 10px
-    }
+}
+
 `
+
+const RecordButton = styled.div`
+position: absolute;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+bottom: 100px;
+right: 10px;
+> .icon {
+    font-size: 28px;
+}
+`;
 
 const Nav = () => {
     return (
         <NavWrapper>
-            <NavLink activeClassName="selected" to="/money" className="record">
-                <Icon fill="#da8d15" name="money" />
-                记一笔
-            </NavLink>
+            <RecordButton className="record">
+                <Icon fill="#da8d15" name="record" />
+                <div>记一笔</div>
+            </RecordButton>
             <ul>
                 <li>
                     <NavLink activeClassName="selected" to="/tags">
@@ -58,8 +67,8 @@ const Nav = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink activeClassName="selected" to="/set">
-                        <Icon fill="#d4237a" name="set" />
+                    <NavLink activeClassName="selected" to="/home">
+                        <Icon name="home" />
                         主页
                     </NavLink>
                 </li>

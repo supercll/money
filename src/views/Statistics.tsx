@@ -1,6 +1,6 @@
 import Layout from "components/Layout";
 import React, { useState } from 'react'
-import { CategorySection } from "./Money/CategorySection";
+import { CategorySection } from "../components/CategorySection";
 import { useRecords, RecordItem } from "hooks/useRecords";
 import { useTags } from "hooks/useTags";
 import day from "dayjs";

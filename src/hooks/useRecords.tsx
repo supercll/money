@@ -20,7 +20,7 @@ const defaultRecords: RecordItem[] = [
         createdAt: "2020-08-05T06:54:15.167Z"
     },
     {
-        tagIds: [1, 2, 3],
+        tagIds: [1, 3],
         note: '',
         category: "+",
         amount: '10',
@@ -28,7 +28,7 @@ const defaultRecords: RecordItem[] = [
     },
 
     {
-        tagIds: [1, 2, 3],
+        tagIds: [1, 2],
         note: '',
         category: "+",
         amount: '10',

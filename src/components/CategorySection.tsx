@@ -3,24 +3,24 @@ import React from 'react'
 
 
 const Category = styled.section`
-  font-size: 24px;
-  > ul{
-    display:flex;
-    .spending {
-      background: #fb7299;
-    }
-    .income {
-      background: #73c9e5;
-    }
-    > li {
-      background: #f1f1f1;
-      border-radius: 50%;
-      width: 50%; 
-      text-align:center;
-      padding: 16px 0;
-      position:relative;
-    }
+width: 30%;
+font-size: 14px;
+> ul{
+  display:flex;
+  .spending {
+    background: #fb7299;
   }
+  .income {
+    background: #73c9e5;
+  }
+  > li {
+    padding: 2px 5px;
+    background: #f1f1f1;
+    border-radius: 50%;
+    text-align:center;
+    position:relative;
+  }
+}
 `;
 type Props = {
   value: '-' | '+';
@@ -28,8 +28,6 @@ type Props = {
 }
 
 const CategorySection: React.FC<Props> = (props) => {
-  // const CategoryMap = {'-': '支出', '+': '收入'}
-  // type Keys = keyof typeof CategoryMap;
   const category = props.value;
   return (
     <Category>

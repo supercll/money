@@ -6,10 +6,10 @@ import {
   Redirect
 } from "react-router-dom";
 import Tags from 'views/Tags';
-import Money from 'views/Money';
 import Statistics from 'views/Statistics';
 import Tag from 'views/Tag';
 import styled from 'styled-components';
+import Home from 'views/Home';
 
 
 const Wrapper = styled.div`
@@ -31,11 +31,11 @@ function App() {
           <Route exact path="/tags/:id">
             <Tag />
           </Route>
-          <Route exact path="/money">
-            <Money />
-          </Route>
           <Route exact path="/statistics">
             <Statistics />
+          </Route>
+          <Route exact path="/home">
+            <Home />
           </Route>
           <Route path="*" >
             <NotFound />
