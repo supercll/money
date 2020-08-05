@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React from 'react'
-import { useTags } from 'useTags';
-import createId from 'lib/createId';
+import { useTags } from 'hooks/useTags';
 
 const Tag = styled.section`
     background: #FFFFFF; 
