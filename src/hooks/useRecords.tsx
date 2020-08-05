@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import useUpdate from "./useUpdate";
 
-type RecordItem = {
+export type RecordItem = {
     tagIds: number[];
     note: string;
     category: "+" | "-";
@@ -11,8 +11,33 @@ type RecordItem = {
 
 type newRecordItem = Omit<RecordItem, "createdAt">
 
+const defaultRecords: RecordItem[] = [
+    {
+        tagIds: [1, 2, 3],
+        note: '',
+        category: "+",
+        amount: '10',
+        createdAt: "2020-08-05T06:54:15.167Z"
+    },
+    {
+        tagIds: [1, 2, 3],
+        note: '',
+        category: "+",
+        amount: '10',
+        createdAt: "2020-08-02T06:54:15.167Z"
+    },
+
+    {
+        tagIds: [1, 2, 3],
+        note: '',
+        category: "+",
+        amount: '10',
+        createdAt: "2020-07-05T06:54:15.167Z"
+    },
+]
+
 export const useRecords = () => {
-    const [records, setRecords] = useState<RecordItem[]>([])
+    const [records, setRecords] = useState<RecordItem[]>(defaultRecords)
 
     useEffect(() => {
         setRecords(JSON.parse(window.localStorage.getItem("records") || '[]'))

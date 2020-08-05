@@ -6,22 +6,19 @@ const Category = styled.section`
   font-size: 24px;
   > ul{
     display:flex;
-    background:#c4c4c4;
+    .spending {
+      background: #fb7299;
+    }
+    .income {
+      background: #73c9e5;
+    }
     > li {
+      background: #f1f1f1;
+      border-radius: 50%;
       width: 50%; 
       text-align:center;
       padding: 16px 0;
       position:relative;
-      &.selected::after{
-        content: '';
-        display:block; 
-        height: 3px;
-        background:#fb7299;
-        position:absolute;
-        bottom:0;
-        width: 100%;
-        left: 0;
-      }
     }
   }
 `;
@@ -37,10 +34,10 @@ const CategorySection: React.FC<Props> = (props) => {
   return (
     <Category>
       <ul>
-        <li className={category === "-" ? "selected" : ""}
+        <li className={`${category === "-" ? "spending" : ""}`}
           onClick={() => props.onChange("-")}
         >支出</li>
-        <li className={category !== "-" ? "selected" : ""}
+        <li className={`${category !== "-" ? "income" : ""}`}
           onClick={() => props.onChange("+")}
         >收入</li>
       </ul>
