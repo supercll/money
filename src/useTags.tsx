@@ -1,18 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import createId from 'lib/createId';
-
-const defaultTags = [
-    { id: createId(), name: '衣' },
-    { id: createId(), name: '食' },
-    { id: createId(), name: '住' },
-    { id: createId(), name: '行' },
-    { id: createId(), name: '学习' },
-    { id: createId(), name: '娱乐' },
-]
+import useUpdate from 'hooks/useUpdate';
 
 const useTags = () => {
-    const [tags, setTags] = useState<{ id: number; name: string }[]>(defaultTags);
+    const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
     const findId = (id: number) => tags.filter(tag => tag.id === id)[0];
+    useEffect(() => {
+        let localTags = JSON.parse(window.localStorage.getItem("tags") || "[]");
+        if (localTags.length === 0) {
+            localTags = [
+                { id: createId(), name: '衣' },
+                { id: createId(), name: '食' },
+                { id: createId(), name: '住' },
+                { id: createId(), name: '行' },
+                { id: createId(), name: '学习' },
+                { id: createId(), name: '娱乐' },
+            ]
+        }
+        setTags(localTags);
+    }, [])
+
+    useUpdate(() => {
+        window.localStorage.setItem("tags", JSON.stringify(tags))
+    }, [tags])
+
     const findTagIndex = (id: number) => {
         let res = -1;
         for (let i = 0; i < tags.length; i++) {
@@ -42,13 +53,20 @@ const useTags = () => {
     const deleteTag = (id: number) => {
         setTags(tags.filter(tag => tag.id !== id))
     }
+    const AddTag = () => {
+        const tagName = window.prompt("新标签的名字为：")
+        if (tagName != null && tagName?.trim() !== "") {
+            setTags([...tags, { id: createId(), name: tagName }]);
+        }
+    }
     return {
         tags,
         setTags,
         findId,
         findTagIndex,
         updateTag,
-        deleteTag
+        deleteTag,
+        AddTag
     }
 }
 

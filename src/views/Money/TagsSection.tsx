@@ -40,13 +40,8 @@ type Props = {
 
 const TagsSection: React.FC<Props> = (props) => {
     const selectedTagIds = props.value;
-    const { tags, setTags } = useTags();
-    const onAddTag = () => {
-        const tagName = window.prompt("新标签的名字为：")
-        if (tagName != null && tagName?.trim() !== "") {
-            setTags([...tags, { id: createId(), name: tagName }]);
-        }
-    }
+    const { tags } = useTags();
+
 
     const onToggleTag = (tagId: number) => {
         const index = selectedTagIds.indexOf(tagId);
@@ -70,7 +65,7 @@ const TagsSection: React.FC<Props> = (props) => {
                     })
                 }
             </ol>
-            <button onClick={onAddTag}>新增标签</button>
+            <button>新增标签</button>
         </Tag>
     )
 }
