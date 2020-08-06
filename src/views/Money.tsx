@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TagsSection } from './Money/TagsSection';
-import { CategorySection } from '../components/CategorySection';
+import { CategorySection } from './Money/CategorySection';
 import { NoteSection } from './Money/NoteSection';
 import { NumberPadSection } from './Money/NumberPadSection';
 import styled from "styled-components";

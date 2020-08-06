@@ -1,6 +1,6 @@
 import Layout from "components/Layout";
 import React, { useState } from 'react'
-import { CategorySection } from "../components/CategorySection";
+import { CategorySection } from "./Money/CategorySection";
 import { useRecords, RecordItem } from "hooks/useRecords";
 import { useTags } from "hooks/useTags";
 import day from "dayjs";
@@ -49,7 +49,7 @@ function Statistics() {
     const { getName } = useTags();
     const hash: { [K: string]: RecordItem[] } = {};
     const selectedRecords = records.filter(r => r.category === category);
-    selectedRecords.map(r => {
+    selectedRecords.forEach(r => {
         const key = day(r.createdAt).format('YYYY年MM月');
         if (!(key in hash)) {
             hash[key] = [];
@@ -66,7 +66,7 @@ function Statistics() {
         return 1;
     });
 
-    const isThisMouth = (date:string) => {
+    const isThisMouth = (date: string) => {
         return date === day(new Date()).format("YYYY年MM月")
     }
 
