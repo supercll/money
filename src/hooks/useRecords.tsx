@@ -9,38 +9,64 @@ export type RecordItem = {
     createdAt: string
 }
 
-type newRecordItem = Omit<RecordItem, "createdAt">
-
-const defaultRecords: RecordItem[] = [
+const defualtRecords = [
     {
-        tagIds: [1, 2, 3],
+        tagIds: [7, 8, 9],
         note: '',
         category: "+",
         amount: '10',
         createdAt: "2020-08-05T06:54:15.167Z"
     },
     {
-        tagIds: [1, 3],
+        tagIds: [7, 8],
         note: '',
-        category: "+",
+        category: "-",
         amount: '10',
         createdAt: "2020-08-02T06:54:15.167Z"
     },
 
     {
-        tagIds: [1, 2],
+        tagIds: [8, 9, 10, 11, 12],
         note: '',
         category: "+",
         amount: '10',
         createdAt: "2020-07-05T06:54:15.167Z"
     },
+    {
+        tagIds: [7, 9],
+        note: '',
+        category: "-",
+        amount: '10',
+        createdAt: "2020-06-05T06:54:15.167Z"
+    },
+    {
+        tagIds: [7, 9],
+        note: '',
+        category: "+",
+        amount: '10',
+        createdAt: "2020-06-05T06:54:15.167Z"
+    },
+    {
+        tagIds: [7, 9],
+        note: '',
+        category: "-",
+        amount: '10',
+        createdAt: "2020-05-05T06:54:15.167Z"
+    },
 ]
 
+type newRecordItem = Omit<RecordItem, "createdAt">
+
 export const useRecords = () => {
-    const [records, setRecords] = useState<RecordItem[]>(defaultRecords)
+    const [records, setRecords] = useState<RecordItem[]>([])
 
     useEffect(() => {
-        setRecords(JSON.parse(window.localStorage.getItem("records") || '[]'))
+        let localRecords = JSON.parse(window.localStorage.getItem("records") || '[]');
+
+        if (localRecords.length === 0) {
+            localRecords = defualtRecords;
+        }
+        setRecords(localRecords);
     }, [])
 
     const addRecord = (newRecord: newRecordItem) => {

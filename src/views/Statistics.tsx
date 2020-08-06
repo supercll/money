@@ -64,7 +64,11 @@ function Statistics() {
             return -1;
         }
         return 1;
-    })
+    });
+
+    const isThisMouth = (date:string) => {
+        return date === day(new Date()).format("YYYY年MM月")
+    }
 
     return (
         <Layout >
@@ -76,12 +80,13 @@ function Statistics() {
             />
 
             {arr.map(([date, records]) => {
+
                 return (
                     <div key={date}>
-                        <DateH3>{date === day(new Date()).format("YYYY年MM月") ? "本月" : date}</DateH3>
+                        <DateH3>{isThisMouth(date) ? "本月" : date}</DateH3>
                         <div>
                             {records.map(r => {
-                                const d = day(r.createdAt).format("DD日");
+                                const d = day(r.createdAt).format("D日");
                                 return (
                                     <History key={r.createdAt}>
                                         <div className="tag" >
@@ -89,7 +94,7 @@ function Statistics() {
                                         </div>
                                         <div className="note">
                                             <span>
-                                                {d === day(new Date()).format("DD日") ? "今天" : d}
+                                                {d === day(new Date()).format("D日") && isThisMouth(date) ? "今天" : d}
                                                 {day(r.createdAt).format("HH:mm")}</span>
                                             <i> {r.note}</i>
                                         </div>

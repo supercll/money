@@ -25,6 +25,7 @@ overflow: auto;
 const Layout = (props: any) => {
   return (
     <Outer>
+
       <Wrapper>
         <Banner />
         <Main className={props.className}>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { TagsSection } from './Money/TagsSection';
 import { CategorySection } from '../components/CategorySection';
 import { NoteSection } from './Money/NoteSection';
@@ -7,14 +7,22 @@ import styled from "styled-components";
 import { useRecords } from "hooks/useRecords";
 import Icon from 'components/Icon';
 
-const Wrapper = styled.div`
-    background:#ffffff;
+const Mask = styled.div`
     position: absolute;
-    /* display: none; */
+    width: 100%;
+    height: 100vh;
+    bottom: 0px;
+    display:none;
+    background: rgba(0, 0, 0, 0.5);
+`
+const Wrapper = styled.div`
+    position: absolute;
+    width: 100%;
+    bottom: -600px;
+    background:#ffffff;
     display:flex;
     flex-direction: column;
-    bottom: 0;
-    transition: 0.6s ease;
+    transition: 0.4s ease;
     #closeRecord {
         .icon {
             font-size: 36px;
@@ -33,11 +41,12 @@ const defaultFormData = {
 function Money() {
     const [selected, setSelected] = useState(defaultFormData);
 
-    const recordRef = React.createRef();
-
     const closeRecord = () => {
-
-
+        const mask: any = document.body.querySelector("#mask");
+        const recordBoard: any = document.body.querySelector("#recordBoard");
+        mask.style.display = "none";
+        mask.style.background = "rgba(0, 0, 0, 0)";
+        recordBoard.style.bottom = "-600px";
     }
 
     // Partial 部分类型
@@ -60,26 +69,32 @@ function Money() {
         }
     }
     return (
-        <Wrapper id="recordBoard">
-            <section id="closeRecord" ><Icon fill="#6dc781" name="down" /></section>
-            <TagsSection
-                value={selected.tagIds}
-                onChange={(tagIds) => onChange({ tagIds })}
-            />
-            <NoteSection
-                value={selected.note}
-                onChange={(note) => onChange({ note })}
-            />
-            <CategorySection
-                value={selected.category}
-                onChange={(category) => onChange({ category })}
-            />
-            <NumberPadSection
-                value={selected.amount}
-                onChange={(amount) => onChange({ amount })}
-                onOK={submit}
-            />
-        </Wrapper>
+        <div>
+            <Mask id="mask">
+            </Mask>
+            <Wrapper id="recordBoard">
+                <section id="closeRecord" ><Icon onClick={closeRecord} fill="#6dc781" name="down" /></section>
+                <TagsSection
+                    value={selected.tagIds}
+                    onChange={(tagIds) => onChange({ tagIds })}
+                />
+                <NoteSection
+                    value={selected.note}
+                    onChange={(note) => onChange({ note })}
+                />
+                <CategorySection
+                    value={selected.category}
+                    onChange={(category) => onChange({ category })}
+                />
+                <NumberPadSection
+                    value={selected.amount}
+                    onChange={(amount) => onChange({ amount })}
+                    onOK={submit}
+                />
+            </Wrapper>
+        </div>
+
+
     );
 }
 export default Money;

@@ -47,9 +47,17 @@ right: 10px;
 `;
 
 const Nav = () => {
+    const showRecordBoard = () => {
+        const mask:any = document.body.querySelector("#mask");
+        const recordBoard:any = document.body.querySelector("#recordBoard");
+        mask.style.display = "block";
+        mask.style.background = "rgba(0, 0, 0, 0.5)";
+        console.log(mask.offsetLeft);
+        recordBoard.style.bottom = "0";
+    }
     return (
         <NavWrapper>
-            <RecordButton className="record">
+            <RecordButton onClick={showRecordBoard} className="record">
                 <Icon fill="#da8d15" name="record" />
                 <div>记一笔</div>
             </RecordButton>
